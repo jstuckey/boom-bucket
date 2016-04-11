@@ -1,0 +1,123 @@
+
+@font-face {
+  font-family: "San Francisco";
+  font-style: normal;
+  font-weight: normal;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff");
+}
+
+body {
+  font-family: 'San Francisco';
+  font-size: 5em;
+  margin: 0.5em;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3em;
+}
+
+.row-no-margin {
+  margin-bottom: 0;
+}
+
+.row > * {
+  flex: 1;
+}
+
+.out.active {
+  background-color: #ff6363;
+}
+
+.inning {
+  display: flex;
+  justify-content: center;
+}
+
+.inning > * {
+  flex: 1;
+}
+
+.number {
+  text-align: center;
+  border-width: 1px;
+}
+
+a:active {
+  background-color: #ff6363;
+}
+
+.text {
+  font-size: 0.6em;
+}
+
+.text-medium {
+  font-size: 0.5em;
+}
+
+.text-small {
+  font-size: 0.4em;
+}
+
+/* Generic Styles */
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.border-all-sides {
+  border-style: solid;
+}
+
+.border-no-right {
+  border-style: solid none solid solid;
+}
+
+.border-no-left {
+  border-style: solid solid solid none;
+}
+
+.border-no-top {
+  border-style: none solid solid;
+}
+
+.border-no-left-no-top {
+  border-style: none solid solid none;
+}
+
+.border-no-right-no-top {
+  border-style: none none solid solid;
+}
+
+/* Colors */
+
+.green {
+  background-color: #9bdd91;
+}
+
+.purple {
+  background-color: #d391dd;
+}
+
+.red {
+  background-color: #ff6363;
+}
+
+.blue {
+  background-color: #b4cfff;
+}
+
+.yellow {
+  background-color: #fffba8;
+}
+
+.orange {
+  background-color: #f6b692;
+}
+
+

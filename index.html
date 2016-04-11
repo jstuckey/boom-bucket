@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Boom Bucket!</title>
+  <link rel="stylesheet" href="app.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body ng-app="boomBucket" ng-controller="GameController as game">
+  <div class="row" ng-controller="OutController as outs">
+    <a class="out number border-all-sides" ng-class= "{ active: outs.firstOut }" ng-click="outs.outButtonClicked(1)">
+      1
+    </a>
+    <a class="out number border-no-left" ng-class= "{ active: outs.secondOut }" ng-click="outs.outButtonClicked(2)">
+      2
+    </a>
+    <a class="out number border-no-left" ng-click="outs.outButtonClicked(3)">
+      3
+    </a>
+  </div>
+  <div class="row row-no-margin">
+    <div class="text">
+      {{game.teamA.name}}
+    </div>
+    <div class="text align-right">
+      {{game.teamB.name}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="score">
+      {{game.teamA.score}}
+    </div>
+    <div class="inning text-small align-center">
+      <div>
+        <span ng-show="game.isTopInning()"> < </span>
+      </div>
+      <div>{{game.inning}}</div>
+      <div>
+        <span ng-show="game.isBottomInning()"> > </span>
+      </div>
+    </div>
+    <div class="score align-right">
+      {{game.teamB.score}}
+    </div>
+  </div>
+  <div class="row row-no-margin">
+    <a class="number border-no-right" ng-click="game.hitButtonClicked(1)">
+      1
+    </a>
+    <a class="number border-all-sides" ng-click="game.hitButtonClicked(2)">
+      2
+    </a>
+    <a class="number border-no-left" ng-click="game.hitButtonClicked(3)">
+      3
+    </a>
+  </div>
+  <div class="row row-no-margin">
+    <a class="number border-no-right-no-top" ng-click="game.hitButtonClicked(4)">
+      4
+    </a>
+    <a class="number border-no-top" ng-click="game.hitButtonClicked(5)">
+      5
+    </a>
+    <a class="number border-no-left-no-top" ng-click="game.hitButtonClicked(6)">
+      6
+    </a>
+  </div>
+  <div class="row row-no-margin">
+    <a class="number border-no-right-no-top" ng-click="game.hitButtonClicked(7)">
+      7
+    </a>
+    <a class="number border-no-top" ng-click="game.hitButtonClicked(8)">
+      8
+    </a>
+    <a class="number border-no-left-no-top" ng-click="game.hitButtonClicked(9)">
+      9
+    </a>
+  </div>
+  <div class="row">
+    <div class="text-medium align-center">
+      <div>{{game.hits}}</div>
+      <div>Hits</div>
+    </div>
+    <a class="number border-no-top" ng-click="game.hitButtonClicked(0)">
+      0
+    </a>
+    <a class="text-medium align-center" ng-click="game.clearButtonClicked()">
+      C
+    </a>
+  </div>
+  <div class="row">
+    <a class="bucket number purple border-all-sides" ng-click="game.bucketButtonClicked(1)">
+      1
+    </a>
+    <a class="bucket number green border-no-left" ng-click="game.bucketButtonClicked(2)">
+      2
+    </a>
+    <a class="bucket number yellow border-no-left" ng-click="game.bucketButtonClicked(3)">
+      3
+    </a>
+    <a class="bucket number blue border-no-left" ng-click="game.bucketButtonClicked(4)">
+      4
+    </a>
+  </div>
+</body>
+</html>
