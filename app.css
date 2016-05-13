@@ -62,6 +62,10 @@ a:active {
 
 /* Generic Styles */
 
+.bold {
+  font-weight: bold;
+}
+
 .align-center {
   text-align: center;
 }
