@@ -1,5 +1,5 @@
 (function() {
-  angular.module('boomBucket').controller('GameController', ['$scope', function($scope) {
+  angular.module('BoomBucket').controller('GameController', ['$scope', function($scope) {
     var that = this;
 
     this.teamA;

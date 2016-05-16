@@ -1,5 +1,5 @@
 (function() {
-  angular.module('boomBucket').controller('OutController', ['$scope', function($scope) {
+  angular.module('BoomBucket').controller('OutController', ['$scope', function($scope) {
     this.firstOut = false;
     this.secondOut = false;
 

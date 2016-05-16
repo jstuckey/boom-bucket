@@ -8,8 +8,8 @@
   <script src="game_controller.js"></script>
   <script src="out_controller.js"></script>
 </head>
-<body ng-app="boomBucket" ng-controller="gamecontroller as game">
-  <div class="row" ng-controller="outcontroller as outs">
+<body ng-app="BoomBucket" ng-controller="GameController as game">
+  <div class="row" ng-controller="OutController as outs">
     <a class="out number border-all-sides" ng-class= "{ active: outs.firstOut }" ng-click="outs.outButtonClicked(1)">
       1
     </a>
