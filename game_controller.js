@@ -22,7 +22,6 @@
       this.hits = 0;
     };
 
-
     this.hitButtonClicked = function(number) {
       this.hits = this.hits * 10 + number;
     };
