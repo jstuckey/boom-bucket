@@ -1,3 +1,8 @@
 (function() {
-  angular.module('BoomBucket', []);
+  angular.module('BoomBucket', ['LocalStorageModule']);
+
+  angular.module('BoomBucket').config(function(localStorageServiceProvider) {
+    localStorageServiceProvider.setPrefix('boom');
+  });
+
 })();
