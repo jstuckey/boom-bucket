@@ -14,5 +14,9 @@
       $scope.$emit('AddPoints', this.hits * multiplier);
       this.hits = 0;
     };
+
+    $scope.$on('OutOccured', function() {
+      this.hits = 0;
+    }.bind(this));
   }]);
 })();
