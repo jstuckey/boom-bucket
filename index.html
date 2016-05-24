@@ -7,6 +7,7 @@
   <script src="app.js"></script>
   <script src="game_controller.js"></script>
   <script src="out_controller.js"></script>
+  <script src="hit_controller.js"></script>
 </head>
 <body ng-app="BoomBucket" ng-controller="GameController as game">
   <div class="row" ng-controller="OutController as outs">
@@ -21,15 +22,15 @@
     </a>
   </div>
   <div class="row row-no-margin">
-    <div class="text" ng-class= "{bold: game.isTopInning()}">
+    <div class="text" ng-class= "{ bold: game.isTopInning() }">
       {{game.teamA.name}}
     </div>
-    <div class="text align-right"ng-class= "{bold: game.isBottomInning()}">
+    <div class="text align-right"ng-class= "{ bold: game.isBottomInning() }">
       {{game.teamB.name}}
     </div>
   </div>
   <div class="row">
-    <div class="score">
+    <div class="hits">
       {{game.teamA.score}}
     </div>
     <div class="inning text-small align-center">
@@ -41,68 +42,70 @@
         <span ng-show="game.isBottomInning()"> > </span>
       </div>
     </div>
-    <div class="score align-right">
+    <div class="hits align-right">
       {{game.teamB.score}}
     </div>
   </div>
-  <div class="row row-no-margin">
-    <a class="number border-no-right" ng-click="game.hitButtonClicked(1)">
-      1
-    </a>
-    <a class="number border-all-sides" ng-click="game.hitButtonClicked(2)">
-      2
-    </a>
-    <a class="number border-no-left" ng-click="game.hitButtonClicked(3)">
-      3
-    </a>
-  </div>
-  <div class="row row-no-margin">
-    <a class="number border-no-right-no-top" ng-click="game.hitButtonClicked(4)">
-      4
-    </a>
-    <a class="number border-no-top" ng-click="game.hitButtonClicked(5)">
-      5
-    </a>
-    <a class="number border-no-left-no-top" ng-click="game.hitButtonClicked(6)">
-      6
-    </a>
-  </div>
-  <div class="row row-no-margin">
-    <a class="number border-no-right-no-top" ng-click="game.hitButtonClicked(7)">
-      7
-    </a>
-    <a class="number border-no-top" ng-click="game.hitButtonClicked(8)">
-      8
-    </a>
-    <a class="number border-no-left-no-top" ng-click="game.hitButtonClicked(9)">
-      9
-    </a>
-  </div>
-  <div class="row">
-    <div class="text-medium align-center">
-      <div>{{game.hits}}</div>
-      <div>Hits</div>
+  <div ng-controller="HitController as hits">
+    <div class="row row-no-margin">
+      <a class="number border-no-right" ng-click="hits.hitButtonClicked(1)">
+        1
+      </a>
+      <a class="number border-all-sides" ng-click="hits.hitButtonClicked(2)">
+        2
+      </a>
+      <a class="number border-no-left" ng-click="hits.hitButtonClicked(3)">
+        3
+      </a>
     </div>
-    <a class="number border-no-top" ng-click="game.hitButtonClicked(0)">
-      0
-    </a>
-    <a class="text-medium align-center" ng-click="game.clearButtonClicked()">
-      C
-    </a>
-  </div>
-  <div class="row">
-    <a class="bucket number purple border-all-sides" ng-click="game.bucketButtonClicked(1)">
-      1
-    </a>
-    <a class="bucket number green border-no-left" ng-click="game.bucketButtonClicked(2)">
-      2
-    </a>
-    <a class="bucket number yellow border-no-left" ng-click="game.bucketButtonClicked(3)">
-      3
-    </a>
-    <a class="bucket number blue border-no-left" ng-click="game.bucketButtonClicked(4)">
-      4
-    </a>
+    <div class="row row-no-margin">
+      <a class="number border-no-right-no-top" ng-click="hits.hitButtonClicked(4)">
+        4
+      </a>
+      <a class="number border-no-top" ng-click="hits.hitButtonClicked(5)">
+        5
+      </a>
+      <a class="number border-no-left-no-top" ng-click="hits.hitButtonClicked(6)">
+        6
+      </a>
+    </div>
+    <div class="row row-no-margin">
+      <a class="number border-no-right-no-top" ng-click="hits.hitButtonClicked(7)">
+        7
+      </a>
+      <a class="number border-no-top" ng-click="hits.hitButtonClicked(8)">
+        8
+      </a>
+      <a class="number border-no-left-no-top" ng-click="hits.hitButtonClicked(9)">
+        9
+      </a>
+    </div>
+    <div class="row">
+      <div class="text-medium align-center">
+        <div>{{hits.hits}}</div>
+        <div>Hits</div>
+      </div>
+      <a class="number border-no-top" ng-click="hits.hitButtonClicked(0)">
+        0
+      </a>
+      <a class="text-medium align-center" ng-click="hits.clearButtonClicked()">
+        C
+      </a>
+    </div>
+    <div class="row">
+      <a class="bucket number purple border-all-sides" ng-click="hits.bucketButtonClicked(1)">
+        1
+      </a>
+      <a class="bucket number green border-no-left" ng-click="hits.bucketButtonClicked(2)">
+        2
+      </a>
+      <a class="bucket number yellow border-no-left" ng-click="hits.bucketButtonClicked(3)">
+        3
+      </a>
+      <a class="bucket number blue border-no-left" ng-click="hits.bucketButtonClicked(4)">
+        4
+      </a>
+    </div>
   </div>
 </body>
 </html>

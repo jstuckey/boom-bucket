@@ -1,12 +1,10 @@
 (function() {
   angular.module('BoomBucket').controller('GameController', ['$scope', function($scope) {
-    var that = this;
 
     this.teamA;
     this.teamB;
     this.currentTeam;
     this.inning;
-    this.hits;
 
     this.setupNewGame = function() {
       this.teamA = {
@@ -19,30 +17,11 @@
       };
       this.currentTeam = this.teamA;
       this.inning = 1;
-      this.hits = 0;
     };
 
-
-    this.hitButtonClicked = function(number) {
-      this.hits = this.hits * 10 + number;
-    };
-
-    this.clearButtonClicked = function() {
-      this.hits = 0;
-    };
-
-    this.bucketButtonClicked = function(multiplier) {
-      this.currentTeam.score += this.hits * multiplier;
-      this.hits = 0;
-    };
-
-    this.isTopInning = function() {
-      return this.currentTeam === this.teamA;
-    };
-
-    this.isBottomInning = function() {
-      return this.currentTeam === this.teamB;
-    };
+    $scope.$on('AddPoints', function(_, pointsToAdd) {
+      this.currentTeam.score += pointsToAdd;
+    }.bind(this));
 
     $scope.$on('EndOfInning', function() {
       if (this.isTopInning()) {
@@ -61,6 +40,14 @@
         this.goBackToTopOfInning();
       }
     }.bind(this));
+
+    this.isTopInning = function() {
+      return this.currentTeam === this.teamA;
+    };
+
+    this.isBottomInning = function() {
+      return this.currentTeam === this.teamB;
+    };
 
     this.setBottomOfInning = function() {
       this.currentTeam = this.teamB;

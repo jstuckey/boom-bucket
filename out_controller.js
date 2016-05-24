@@ -1,9 +1,10 @@
 (function() {
-  angular.module('BoomBucket').controller('OutController', ['$scope', function($scope) {
+  angular.module('BoomBucket').controller('OutController', ['$rootScope', function($rootScope) {
     this.firstOut = false;
     this.secondOut = false;
 
     this.outButtonClicked = function(outNumber) {
+      $rootScope.$broadcast('OutOccured');
       if (outNumber === 1) {
         if (this.firstOutAlreadyRecorded()) {
           this.firstOut = false;
@@ -25,10 +26,10 @@
       } else {
         if (this.secondOutAlreadyRecorded()) {
           this.resetOuts();
-          $scope.$emit('EndOfInning');
+          $rootScope.$broadcast('EndOfInning');
         } else if (this.noOutsRecorded()) {
           this.resetOuts();
-          $scope.$emit('GoBackAnInning');
+          $rootScope.$broadcast('GoBackAnInning');
         }
       }
     };
