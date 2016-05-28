@@ -6,55 +6,58 @@
   OutController.$inject = ['$rootScope'];
 
   function OutController($rootScope) {
-    this.firstOut = false;
-    this.secondOut = false;
+    var vm = this;
 
-    this.outButtonClicked = function(outNumber) {
+    vm.firstOut = false;
+    vm.outButtonClicked  = outButtonClicked;
+    vm.secondOut = false;
+
+    function outButtonClicked(outNumber) {
       $rootScope.$broadcast('OutOccured');
       if (outNumber === 1) {
-        if (this.firstOutAlreadyRecorded()) {
-          this.firstOut = false;
-          this.secondOut = false;
+        if (firstOutAlreadyRecorded()) {
+          vm.firstOut = false;
+          vm.secondOut = false;
         } else {
-          this.firstOut = true
-          this.secondOut = false;
+          vm.firstOut = true
+          vm.secondOut = false;
         }
       } else if (outNumber === 2) {
-        if (this.noOutsRecorded()) {
+        if (noOutsRecorded()) {
           return;
-        } else if (this.secondOutAlreadyRecorded()) {
-          this.firstOut = true;
-          this.secondOut = false;
+        } else if (secondOutAlreadyRecorded()) {
+          vm.firstOut = true;
+          vm.secondOut = false;
         } else {
-          this.firstOut = true;
-          this.secondOut = true;
+          vm.firstOut = true;
+          vm.secondOut = true;
         }
       } else {
-        if (this.secondOutAlreadyRecorded()) {
-          this.resetOuts();
+        if (secondOutAlreadyRecorded()) {
+          resetOuts();
           $rootScope.$broadcast('EndOfInning');
-        } else if (this.noOutsRecorded()) {
-          this.resetOuts();
+        } else if (noOutsRecorded()) {
+          resetOuts();
           $rootScope.$broadcast('GoBackAnInning');
         }
       }
-    };
+    }
 
-    this.resetOuts = function() {
-      this.firstOut = false;
-      this.secondOut = false;
-    };
+    function resetOuts() {
+      vm.firstOut = false;
+      vm.secondOut = false;
+    }
 
-    this.noOutsRecorded = function() {
-      return this.firstOut === false && this.secondOut === false
-    };
+    function noOutsRecorded() {
+      return vm.firstOut === false && vm.secondOut === false
+    }
 
-    this.firstOutAlreadyRecorded = function() {
-      return this.firstOut === true;
-    };
+    function firstOutAlreadyRecorded() {
+      return vm.firstOut === true;
+    }
 
-    this.secondOutAlreadyRecorded = function() {
-      return this.secondOut === true;
-    };
+    function secondOutAlreadyRecorded() {
+      return vm.secondOut === true;
+    }
   }
 })();

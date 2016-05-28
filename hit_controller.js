@@ -6,23 +6,28 @@
   HitController.$inject = ['$scope'];
 
   function HitController($scope) {
-    this.hits = 0;
+    var vm = this;
 
-    this.hitButtonClicked = function(number) {
-      this.hits = this.hits * 10 + number;
-    };
+    vm.bucketButtonClicked = bucketButtonClicked;
+    vm.clearButtonClicked = clearButtonClicked;
+    vm.hitButtonClicked = hitButtonClicked;
+    vm.hits = 0;
 
-    this.clearButtonClicked = function() {
-      this.hits = 0;
-    };
+    function bucketButtonClicked(multiplier) {
+      $scope.$emit('AddPoints', vm.hits * multiplier);
+      vm.hits = 0;
+    }
 
-    this.bucketButtonClicked = function(multiplier) {
-      $scope.$emit('AddPoints', this.hits * multiplier);
-      this.hits = 0;
-    };
+    function clearButtonClicked() {
+      vm.hits = 0;
+    }
+
+    function hitButtonClicked(number) {
+      vm.hits = vm.hits * 10 + number;
+    }
 
     $scope.$on('OutOccured', function() {
-      this.hits = 0;
-    }.bind(this));
+      vm.hits = 0;
+    });
   }
 })();
