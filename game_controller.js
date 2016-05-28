@@ -1,6 +1,6 @@
 (function() {
   angular
-    .module('BoomBucket')
+    .module('app')
     .controller('GameController', GameController);
 
   GameController.$inject = ['$scope'];

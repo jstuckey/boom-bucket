@@ -1,6 +1,6 @@
 (function() {
   angular
-    .module('BoomBucket')
+    .module('app')
     .controller('OutController', OutController);
 
   OutController.$inject = ['$rootScope'];
