@@ -1,22 +1,33 @@
 (function() {
-  angular.module('BoomBucket').controller('HitController', ['$scope', function($scope) {
-    this.hits = 0;
+  angular
+    .module('app')
+    .controller('HitController', HitController);
 
-    this.hitButtonClicked = function(number) {
-      this.hits = this.hits * 10 + number;
-    };
+  HitController.$inject = ['$scope'];
 
-    this.clearButtonClicked = function() {
-      this.hits = 0;
-    };
+  function HitController($scope) {
+    var vm = this;
 
-    this.bucketButtonClicked = function(multiplier) {
-      $scope.$emit('AddPoints', this.hits * multiplier);
-      this.hits = 0;
-    };
+    vm.bucketButtonClicked = bucketButtonClicked;
+    vm.clearButtonClicked = clearButtonClicked;
+    vm.hitButtonClicked = hitButtonClicked;
+    vm.hits = 0;
+
+    function bucketButtonClicked(multiplier) {
+      $scope.$emit('AddPoints', vm.hits * multiplier);
+      vm.hits = 0;
+    }
+
+    function clearButtonClicked() {
+      vm.hits = 0;
+    }
+
+    function hitButtonClicked(number) {
+      vm.hits = vm.hits * 10 + number;
+    }
 
     $scope.$on('OutOccured', function() {
-      this.hits = 0;
-    }.bind(this));
-  }]);
+      vm.hits = 0;
+    });
+  }
 })();

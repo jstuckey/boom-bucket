@@ -1,73 +1,37 @@
 (function() {
-  angular.module('BoomBucket').controller('GameController', ['$scope', function($scope) {
+  angular
+    .module('app')
+    .controller('GameController', GameController);
 
-    this.teamA;
-    this.teamB;
-    this.currentTeam;
-    this.inning;
+  GameController.$inject = ['$scope'];
 
-    this.setupNewGame = function() {
-      this.teamA = {
+  function GameController($scope) {
+    var vm = this;
+
+    vm.inning;
+    vm.isBottomInning = isBottomInning;
+    vm.isTopInning = isTopInning;
+    vm.teamA;
+    vm.teamB;
+
+    var currentTeam;
+
+    setupNewGame();
+
+    function setupNewGame() {
+      vm.teamA = {
         name: 'Team A',
         score: 0
       };
-      this.teamB = {
+      vm.teamB = {
         name: 'Team B',
         score: 0
       };
-      this.currentTeam = this.teamA;
-      this.inning = 1;
-    };
-
-    $scope.$on('AddPoints', function(_, pointsToAdd) {
-      this.currentTeam.score += pointsToAdd;
-    }.bind(this));
-
-    $scope.$on('EndOfInning', function() {
-      if (this.isTopInning()) {
-        this.setBottomOfInning();
-      } else if (this.inning === 9) {
-        this.endOfGame();
-      } else {
-        this.setTopOfInning();
-      }
-    }.bind(this));
-
-    $scope.$on('GoBackAnInning', function() {
-      if (this.isTopInning() && this.inning != 1) {
-        this.goBackToBottomOfInning();
-      } else {
-        this.goBackToTopOfInning();
-      }
-    }.bind(this));
-
-    this.isTopInning = function() {
-      return this.currentTeam === this.teamA;
-    };
-
-    this.isBottomInning = function() {
-      return this.currentTeam === this.teamB;
-    };
-
-    this.setBottomOfInning = function() {
-      this.currentTeam = this.teamB;
-    };
-
-    this.setTopOfInning = function() {
-      this.currentTeam = this.teamA;
-      this.inning += 1;
-    };
-
-    this.goBackToBottomOfInning = function() {
-      this.currentTeam = this.teamB;
-      this.inning -= 1;
+      currentTeam = vm.teamA;
+      vm.inning = 1;
     }
 
-    this.goBackToTopOfInning = function() {
-      this.currentTeam = this.teamA;
-    }
-
-    this.endOfGame = function() {
+    function endOfGame() {
       console.log("GAME OVER");
       if (teamA.score > teamB.score) {
         console.log("Team A wins");
@@ -76,8 +40,54 @@
       } else {
         console.log("Ties are for Father's Day");
       }
+    }
+
+    function goBackToBottomOfInning() {
+      currentTeam = vm.teamB;
+      vm.inning -= 1;
+    }
+
+    function goBackToTopOfInning() {
+      currentTeam = vm.teamA;
+    }
+
+    function isTopInning() {
+      return currentTeam === vm.teamA;
+    }
+
+    function isBottomInning() {
+      return currentTeam === vm.teamB;
+    }
+
+    function setBottomOfInning() {
+      currentTeam = vm.teamB;
+    }
+
+    function setTopOfInning() {
+      currentTeam = vm.teamA;
+      vm.inning += 1;
     };
 
-    this.setupNewGame();
-  }]);
+    $scope.$on('AddPoints', function(_, pointsToAdd) {
+      currentTeam.score += pointsToAdd;
+    });
+
+    $scope.$on('EndOfInning', function() {
+      if (isTopInning()) {
+        setBottomOfInning();
+      } else if (vm.inning === 9) {
+        endOfGame();
+      } else {
+        setTopOfInning();
+      }
+    });
+
+    $scope.$on('GoBackAnInning', function() {
+      if (isTopInning() && vm.inning != 1) {
+        goBackToBottomOfInning();
+      } else {
+        goBackToTopOfInning();
+      }
+    });
+  }
 })();
