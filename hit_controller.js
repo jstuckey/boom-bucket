@@ -1,5 +1,11 @@
 (function() {
-  angular.module('BoomBucket').controller('HitController', ['$scope', function($scope) {
+  angular
+    .module('BoomBucket')
+    .controller('HitController', HitController);
+
+  HitController.$inject = ['$scope'];
+
+  function HitController($scope) {
     this.hits = 0;
 
     this.hitButtonClicked = function(number) {
@@ -18,5 +24,5 @@
     $scope.$on('OutOccured', function() {
       this.hits = 0;
     }.bind(this));
-  }]);
+  }
 })();

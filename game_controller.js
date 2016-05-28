@@ -1,6 +1,11 @@
 (function() {
-  angular.module('BoomBucket').controller('GameController', ['$scope', function($scope) {
+  angular
+    .module('BoomBucket')
+    .controller('GameController', GameController);
 
+  GameController.$inject = ['$scope'];
+
+  function GameController($scope) {
     this.teamA;
     this.teamB;
     this.currentTeam;
@@ -79,5 +84,5 @@
     };
 
     this.setupNewGame();
-  }]);
+  }
 })();

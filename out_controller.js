@@ -1,5 +1,11 @@
 (function() {
-  angular.module('BoomBucket').controller('OutController', ['$rootScope', function($rootScope) {
+  angular
+    .module('BoomBucket')
+    .controller('OutController', OutController);
+
+  OutController.$inject = ['$rootScope'];
+
+  function OutController($rootScope) {
     this.firstOut = false;
     this.secondOut = false;
 
@@ -50,5 +56,5 @@
     this.secondOutAlreadyRecorded = function() {
       return this.secondOut === true;
     };
-  }]);
+  }
 })();
